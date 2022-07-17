@@ -6,8 +6,6 @@
 @import "./table.scss";
 @import "./toolbar.scss";
 
-$red: grey;
-
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +14,14 @@ $red: grey;
 
 body {
     font-family: 'Roboto',sans-serif;
-    background: $red ;
     font-size: 12px;
 }
 
 .excel {
-    position: relative;
+  position: relative;
+  color: #888;
+  height: 100%;
+  max-width: 100%;
+  font-size: .8rem;
+
 }
