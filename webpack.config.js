@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWeppackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
@@ -56,9 +57,10 @@ module.exports = {
         hot: isDev
     },
     plugins: [
+        new HtmlWebpackPugPlugin(),
         new CleanWebpackPlugin(),
         new HTMLWeppackPlugin({
-            template: 'index.html',
+            template: 'index.pug',
             minify: {
                 removeComments: isProd,
                 collapseWhitespace: isProd
@@ -75,7 +77,19 @@ module.exports = {
         }),
     ],
     module: {
-        rules: [
+        rules: [{
+          test: /\.pug$/,
+          use: [{
+                  loader: 'html-loader'
+              },
+              {
+                  loader: 'pug-html-loader',
+                  options: {
+                      exports: false
+                  }
+              }
+          ]
+      },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
@@ -105,4 +119,4 @@ module.exports = {
     }
 }
 
-//01/08 урок
+//02/08 урок

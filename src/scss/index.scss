@@ -1,5 +1,28 @@
-$red: grey;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import "../../node_modules/normalize.css/normalize.css" ;
+
+@import "./header.scss";
+@import "./formula.scss";
+@import "./table.scss";
+@import "./toolbar.scss";
+@import "./dashboard.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background: $red ;
+    font-family: 'Roboto',sans-serif;
+    font-size: 12px;
+}
+
+.excel {
+  position: relative;
+  color: #888;
+  height: 100%;
+  max-width: 100%;
+  font-size: .8rem;
+
 }

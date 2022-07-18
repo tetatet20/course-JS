@@ -4,11 +4,13 @@
         "es6": true,
         "browser": true,
         "node": true
+        
     },
     "rules": {
         "semi": "off",
         "indent": "off",
         "require-jsdoc": "off"
+        
     },
     "extends": [
         "eslint:recommended",
