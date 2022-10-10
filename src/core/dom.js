@@ -1,16 +1,29 @@
 class Dom {
   constructor(selector) {
-// app
-  this.$el = typeof selector === 'string'
-  ? document.querySelector(selector)
-  :selector
+    this.$el = typeof selector === 'string'
+      ? document.querySelector(selector)
+      : selector
   }
-  html( html ) {
+
+  html(html) {
     if (typeof html === 'string') {
       this.$el.innerHTML = html
+      return this
     }
     return this.$el.outerHTML.trim()
   }
+
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text
+      return this
+    }
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim()
+    }
+    return this.$el.textContent.trim()
+  }
+
   clear() {
     this.html('')
     return this
@@ -20,26 +33,31 @@ class Dom {
     this.$el.addEventListener(eventType, callback)
   }
 
-  of(eventType, callback) {
-  this.$el.removeventListener(eventType, callback)
+  off(eventType, callback) {
+    this.$el.removeEventListener(eventType, callback)
   }
 
-  // Element
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+
   append(node) {
-    // if (node instanceof Dom) {
-    //   node = node.$el
-    // }
-    if (Element.prototype.append) {
-      this.$el.append(node.$el)
-    } else {
-      this.$el.appendChild(node.$el)
+    if (node instanceof Dom) {
+      node = node.$el
     }
+
+    if (Element.prototype.append) {
+      this.$el.append(node)
+    } else {
+      this.$el.appendChild(node)
+    }
+
     return this
   }
 
-get data() {
-  return this.$el.dataset
-}
+  get data() {
+    return this.$el.dataset
+  }
 
   closest(selector) {
     return $(this.$el.closest(selector))
@@ -54,13 +72,38 @@ get data() {
   }
 
   css(styles = {}) {
-  Object.keys(styles).forEach((key) => {
-    this.$el.style[key] = styles[key]
-  })
+    Object
+        .keys(styles)
+        .forEach(key => {
+          this.$el.style[key] = styles[key]
+        })
+  }
+
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':')
+      return {
+        row: +parsed[0],
+        col: +parsed[1]
+      }
+    }
+    return this.data.id
+  }
+
+  focus() {
+    this.$el.focus()
+    return this
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className)
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className)
   }
 }
 
-// event.target
 export function $(selector) {
   return new Dom(selector)
 }
