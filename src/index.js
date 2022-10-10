@@ -1,9 +1,14 @@
-import '@/scss/index.scss';
+import {Excel} from './components/excel/excel';
+import {Header} from './components/header/Header';
+import {Table} from './components/table/Table';
+import {Toolbar} from './components/toolbar/Toolbar';
+import {Formula} from './components/formula/Formula';
+import './scss/index.scss'
 
-console.log('poma');
+const excel = new Excel('#app', {
+  components: [Header, Toolbar, Formula, Table],
+})
 
-async function start() {
-    return await Promise.resolve('OK');
-}
+excel.render()
 
-start().then(console.log);
+

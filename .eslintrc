@@ -1,5 +1,9 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "ecmaVersion": "latest"
+    },
     "env": {
         "es6": true,
         "browser": true,
@@ -9,7 +13,8 @@
     "rules": {
         "semi": "off",
         "indent": "off",
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "operator-linebreak":"off"
         
     },
     "extends": [
