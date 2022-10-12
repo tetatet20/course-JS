@@ -6,7 +6,6 @@ export class TableSelection {
     this.current = null
   }
 
-  // $el instanceof DOM === true
   select($el) {
     this.clear()
     $el.focus().addClass(TableSelection.className)
@@ -15,7 +14,7 @@ export class TableSelection {
   }
 
   clear() {
-    this.group.forEach($el => $el.removeClass(TableSelection.className))
+    this.group.forEach(($el) => $el.removeClass(TableSelection.className))
     this.group = []
   }
 
@@ -23,6 +22,6 @@ export class TableSelection {
     this.clear()
 
     this.group = $group
-    this.group.forEach($el => $el.addClass(TableSelection.className))
+    this.group.forEach(($el) => $el.addClass(TableSelection.className))
   }
 }
